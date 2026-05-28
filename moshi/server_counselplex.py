@@ -31,6 +31,7 @@ import json
 import random
 import os
 from pathlib import Path
+import shutil
 import tarfile
 import time
 import secrets
@@ -201,6 +202,76 @@ def wrap_with_system_tags(text: str) -> str:
     return f"<system> {cleaned} <system>"
 
 
+# ─── CUM (cross-turn master-phrase) injection support ──────────────────────────
+#
+# Mirrors moshi.offline's --inject-cum mode for the streaming server: VAD per
+# Mimi frame, track seeker-turn boundaries, and on each new seeker turn replay
+# the model's most-recently-captured think phrase as forced text tokens.
+
+CUM_SILENCE_BREAK_FRAMES = 12  # ≥1 s at 12.5 Hz of silence → new seeker turn
+
+
+def _load_silero_vad():
+    """Load Silero VAD (CPU). Returns (model, ok). Failures fall back to RMS."""
+    try:
+        model, _ = torch.hub.load(
+            'snakers4/silero-vad', 'silero_vad',
+            force_reload=False, trust_repo=True, verbose=False,
+        )
+        return model, True
+    except Exception as e:
+        logger.warning(
+            f"Silero VAD load failed ({type(e).__name__}: {e}); "
+            "CUM injection will fall back to RMS energy"
+        )
+        return None, False
+
+
+def _vad_is_active(vad_model, chunk_np: np.ndarray, sample_rate: int) -> bool:
+    """Per-Mimi-frame VAD: True if any 32 ms sub-window is speech.
+
+    Silero v5 requires 512-sample chunks @ 16 kHz; we slide it across the
+    1280-sample (80 ms) window for each Mimi frame. Falls back to RMS energy
+    if Silero is unavailable or raises.
+    """
+    if vad_model is None:
+        return float(np.sqrt(np.mean(chunk_np ** 2))) > 0.005
+    try:
+        audio_t = torch.from_numpy(chunk_np).float().unsqueeze(0)
+        audio_16k = torchaudio.functional.resample(audio_t, sample_rate, 16000)[0]
+        silero_chunk_16k = 512
+        samples_per_mimi_16k = int(round(len(chunk_np) * 16000 / sample_rate))
+        n_sub = max(1, samples_per_mimi_16k // silero_chunk_16k)
+        for k in range(n_sub):
+            s = k * silero_chunk_16k
+            sub = audio_16k[s:s + silero_chunk_16k]
+            if sub.shape[-1] < silero_chunk_16k:
+                sub = torch.nn.functional.pad(sub, (0, silero_chunk_16k - sub.shape[-1]))
+            with torch.no_grad():
+                prob = vad_model(sub, 16000).item()
+            if prob > 0.5:
+                return True
+        return False
+    except Exception:
+        return float(np.sqrt(np.mean(chunk_np ** 2))) > 0.005
+
+
+def _new_cum_state() -> dict:
+    return {
+        "phrase": "",
+        "state": "idle",            # idle | injecting_cum | collecting_new
+        "buf": [],
+        "pos": 0,
+        "new_buf": [],
+        "seeker_in_turn": False,
+        "silence_run": 0,
+        "seeker_active_count": 0,
+        "seeker_turn_idx": -1,
+        "last_injected_turn": -1,
+        "global_step": 0,
+    }
+
+
 @dataclass
 class ServerState:
     mimi: MimiModel
@@ -213,6 +284,8 @@ class ServerState:
                  lm: LMModel, device: str | torch.device, voice_prompt_dir: str | None = None,
                  voice_prompt: str = "woman_supporter.wav",
                  text_prompt: str = "You are a counselor.",
+                 inject_cum: bool = False,
+                 cum_delay_frames: int = 3,
                  save_voice_prompt_embeddings: bool = False,
                  asr_model_size: str | None = None, asr_device: str = "cpu", asr_language: str = "en",
                  log_dir: str | None = None):
@@ -223,6 +296,12 @@ class ServerState:
         self.voice_prompt_dir = voice_prompt_dir
         self.voice_prompt = voice_prompt
         self.text_prompt = text_prompt
+        self.inject_cum = inject_cum
+        self.cum_delay_frames = cum_delay_frames
+        self.vad_model = None
+        if inject_cum:
+            logger.info("loading Silero VAD for CUM injection")
+            self.vad_model, _ = _load_silero_vad()
         self.frame_size = int(self.mimi.sample_rate / self.mimi.frame_rate)
         self.log_dir = log_dir
         self.asr_model = None
@@ -316,6 +395,14 @@ class ServerState:
             session_logger.log_session_start(self.text_prompt, str(voice_prompt_path))
         seed = int(request["seed"]) if "seed" in request.query else None
 
+        # Per-session CUM state; mirrors moshi.offline's process_one. The VAD
+        # model is shared across sessions but its streaming state is reset here.
+        cum = _new_cum_state()
+        if self.inject_cum:
+            if self.vad_model is not None:
+                self.vad_model.reset_states()
+            clog.log("info", "CUM injection enabled for this session")
+
         async def recv_loop():
             nonlocal close
             try:
@@ -380,9 +467,55 @@ class ServerState:
                     chunk = chunk.to(device=self.device)[None, None]
                     codes = self.mimi.encode(chunk)
                     _ = self.other_mimi.encode(chunk)
+
+                    # --- CUM: per-Mimi-frame VAD + seeker-turn state update ---
+                    user_active = False
+                    if self.inject_cum:
+                        user_active = _vad_is_active(self.vad_model, chunk_np, self.mimi.sample_rate)
+                        if user_active:
+                            cum["silence_run"] = 0
+                            if not cum["seeker_in_turn"]:
+                                cum["seeker_in_turn"] = True
+                                cum["seeker_active_count"] = 1
+                                cum["seeker_turn_idx"] += 1
+                            else:
+                                cum["seeker_active_count"] += 1
+                        else:
+                            cum["silence_run"] += 1
+                            if (cum["silence_run"] >= CUM_SILENCE_BREAK_FRAMES
+                                    and cum["seeker_in_turn"]):
+                                cum["seeker_in_turn"] = False
+                                cum["seeker_active_count"] = 0
+                        if (cum["state"] == "idle"
+                                and cum["seeker_in_turn"]
+                                and cum["seeker_active_count"] == self.cum_delay_frames
+                                and cum["phrase"]
+                                and cum["seeker_turn_idx"] > cum["last_injected_turn"]):
+                            body = self.text_tokenizer.encode(cum["phrase"])
+                            cum["buf"] = [THINK_START_ID] + body + [THINK_END_ID]
+                            cum["pos"] = 0
+                            cum["state"] = "injecting_cum"
+                            cum["last_injected_turn"] = cum["seeker_turn_idx"]
+                            clog.log("info",
+                                f"[inject] cum at step {cum['global_step']} "
+                                f"(turn {cum['seeker_turn_idx']}): {cum['phrase']!r}")
+
                     for c in range(codes.shape[-1]):
-                        tokens = self.lm_gen.step(codes[:, :, c: c + 1])
+                        forced_text = None
+                        if self.inject_cum and cum["state"] == "injecting_cum":
+                            forced_text = torch.tensor(
+                                [cum["buf"][cum["pos"]]],
+                                device=self.device, dtype=torch.long,
+                            )
+                            cum["pos"] += 1
+                            if cum["pos"] >= len(cum["buf"]):
+                                cum["state"] = "idle"
+                        if forced_text is not None:
+                            tokens = self.lm_gen.step(codes[:, :, c: c + 1], text_token=forced_text)
+                        else:
+                            tokens = self.lm_gen.step(codes[:, :, c: c + 1])
                         if tokens is None:
+                            cum["global_step"] += 1
                             continue
                         assert tokens.shape[1] == self.lm_gen.lm_model.dep_q + 1
                         main_pcm = self.mimi.decode(tokens[:, 1:9])
@@ -390,6 +523,41 @@ class ServerState:
                         main_pcm = main_pcm.cpu()
                         opus_writer.append_pcm(main_pcm[0, 0].numpy())
                         text_token = tokens[0, 0, 0].item()
+
+                        # --- CUM: capture new master phrase from emitted think ---
+                        if self.inject_cum:
+                            sp_vocab = self.text_tokenizer.vocab_size()
+                            if (cum["state"] == "idle"
+                                    and not user_active
+                                    and text_token == THINK_START_ID):
+                                cum["state"] = "collecting_new"
+                                cum["new_buf"] = []
+                            elif cum["state"] == "collecting_new":
+                                if text_token == THINK_END_ID:
+                                    cum["state"] = "idle"
+                                    safe = [t for t in cum["new_buf"] if 0 < t < sp_vocab]
+                                    if safe:
+                                        try:
+                                            decoded = self.text_tokenizer.decode(safe)
+                                        except Exception as e:
+                                            clog.log("warning",
+                                                f"[capture] decode failed ({type(e).__name__}); skipping")
+                                            decoded = ""
+                                        if decoded:
+                                            decoded = decoded.replace("▁", " ").strip()
+                                            for pref in ("new:", "topic:", "new", "topic"):
+                                                if decoded.startswith(pref):
+                                                    decoded = decoded[len(pref):].lstrip(": ").strip()
+                                                    break
+                                            if decoded and decoded != cum["phrase"]:
+                                                cum["phrase"] = decoded
+                                                clog.log("info", f"[capture] master phrase: {decoded!r}")
+                                            elif decoded:
+                                                clog.log("info", f"[capture] dup skipped: {decoded!r}")
+                                elif 0 < text_token < sp_vocab:
+                                    cum["new_buf"].append(text_token)
+
+                        cum["global_step"] += 1
                         if text_token == THINK_START_ID:
                             in_think = True
                             if session_logger:
@@ -550,6 +718,45 @@ def _get_voice_prompt_dir(voice_prompt_dir: Optional[str], hf_repo: str) -> Opti
     return str(voices_dir)
 
 
+def _patch_dist_for_counselplex(dist_dir: str) -> str:
+    """Copy the upstream PersonaPlex dist to a sibling directory and apply
+    CounselPlex branding: rename the title/subtitle and hide the text/voice
+    prompt selection UI (those choices are server-side now). Returns the
+    patched directory's path. Re-applied on every server start so changes to
+    the patch set always take effect."""
+    src = Path(dist_dir)
+    dst = src.parent / "dist_counselplex"
+    if dst.exists():
+        shutil.rmtree(dst)
+    shutil.copytree(src, dst)
+
+    for js in dst.glob("assets/index-*.js"):
+        text = js.read_text(encoding="utf-8")
+        text = text.replace(
+            '"PersonaPlex"', '"CounselPlex"',
+        ).replace(
+            '"Full duplex conversational AI with text and voice control."',
+            '"A Stressor-Aware Full-Duplex Counseling Model"',
+        )
+        js.write_text(text, encoding="utf-8")
+
+    idx = dst / "index.html"
+    if idx.exists():
+        html = idx.read_text(encoding="utf-8")
+        html = html.replace("<title>PersonaPlex</title>", "<title>CounselPlex</title>")
+        overlay = (
+            "    <style>\n"
+            "      /* Hide text/voice prompt selection — chosen server-side. */\n"
+            "      div:has(> label[for=\"text-prompt\"]),\n"
+            "      div:has(> label[for=\"voice-prompt\"]) { display: none !important; }\n"
+            "    </style>\n  </head>"
+        )
+        html = html.replace("  </head>", overlay)
+        idx.write_text(html, encoding="utf-8")
+
+    return str(dst)
+
+
 def _get_static_path(static: Optional[str]) -> Optional[str]:
     if static is None:
         logger.info("retrieving the static content")
@@ -559,7 +766,7 @@ def _get_static_path(static: Optional[str]) -> Optional[str]:
         if not dist.exists():
             with tarfile.open(dist_tgz, "r:gz") as tar:
                 tar.extractall(path=dist_tgz.parent)
-        return str(dist)
+        return _patch_dist_for_counselplex(str(dist))
     elif static != "none":
         # When set to the "none" string, we don't serve any static content.
         return static
@@ -602,6 +809,18 @@ def main():
         "--text-prompt", type=str, default="You are a counselor.",
         help="Text/system prompt used for every session. "
              "The CounselPlex WebUI's text selection is ignored.",
+    )
+    parser.add_argument(
+        "--inject-cum", action="store_true",
+        help="Enable cross-turn CUM (cumulative master-phrase) injection. "
+             "Loads Silero VAD and forces the model's most-recently-captured "
+             "think phrase at the start of every new seeker turn. "
+             "Mirrors the same flag in moshi.offline.",
+    )
+    parser.add_argument(
+        "--cum-delay-frames", type=int, default=3,
+        help="Frames after VAD-active to inject the CUM phrase "
+             "(default: 3; matches moshi.offline).",
     )
     parser.add_argument(
         "--ssl",
@@ -693,6 +912,8 @@ def main():
         voice_prompt_dir=args.voice_prompt_dir,
         voice_prompt=args.voice_prompt,
         text_prompt=args.text_prompt,
+        inject_cum=args.inject_cum,
+        cum_delay_frames=args.cum_delay_frames,
         save_voice_prompt_embeddings=False,
         asr_model_size=args.asr_model,
         asr_device=args.asr_device,

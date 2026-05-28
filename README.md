@@ -84,10 +84,25 @@ python -m moshi.server_counselplex \
   --mimi-weight   checkpoints/mimi.safetensors \
   --tokenizer     checkpoints/tokenizer.model  \
   --voice-prompt-dir checkpoints/voices       \
-  --host 0.0.0.0  --port 8998
+  --voice-prompt  woman_supporter.wav         \
+  --text-prompt   "You are a counselor."      \
+  --inject-cum                                \
+  --cum-delay-frames 3                        \
+  --host 127.0.0.1 --port 8998
 ```
 
-Connect a Moshi-compatible client (sends 24 kHz mono PCM frames, receives the same). The voice prompt and text prompt are negotiated per-session via the WebSocket handshake — the client tells the server which voice file (e.g. `woman_supporter.wav`) and what system prompt (e.g. `"You are a counselor."`) to use for that session.
+Open `http://127.0.0.1:8998` for the WebUI, or connect a Moshi-compatible client. Frames are 24 kHz mono PCM in both directions.
+
+The voice and text prompts are fixed server-side via `--voice-prompt` / `--text-prompt` (the WebUI's selection screen is hidden — the same CounselPlex voice and counselor system prompt are used for every session).
+
+`--inject-cum` turns on cross-turn stressor carrying in streaming mode (same mechanism as `moshi.offline`): the server runs Silero VAD per Mimi frame, captures the model's `<think>…</think>` master phrase whenever the seeker is silent, and force-injects that phrase at the start of every new seeker turn. When it fires you'll see lines like
+
+```
+[capture] master phrase: 'toxic work environment'
+[inject]  cum at step 307 (turn 1): 'toxic work environment'
+```
+
+in the server terminal. Omit `--inject-cum` to disable it. `--cum-delay-frames` (default 3 ≈ 240 ms) controls how many VAD-active frames into a new seeker turn the injection fires.
 
 ## Hyperparameters used in the paper
 
