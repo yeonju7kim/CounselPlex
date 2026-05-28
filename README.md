@@ -64,8 +64,9 @@ python -m moshi.offline \
 ```
 
 Each `<id>.wav` in the input directory is processed independently. Outputs:
-- `<id>.out.wav` — model's audio response (stereo: ch0 = user input, ch1 = model)
+- `<id>.out.wav` — model's audio response (mono, 24 kHz)
 - `<id>.out.json` — per-frame text tokens emitted by the model
+- `<id>.out.forced.json` — per-frame mask (`true` = token was CUM-injected); written only when `--inject-cum` is on
 
 ## Online inference (WebSocket server)
 

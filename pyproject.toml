@@ -8,9 +8,11 @@ dependencies = [
     "huggingface-hub >= 0.24",
     "einops == 0.7",
     "sentencepiece >= 0.1",
-    "sounddevice == 0.5",
     "sphn >= 0.1.4, < 0.2",
-    "torch >= 2.2.0",
+    "torch >= 2.4",
+    "torchaudio >= 2.4",
+    "tqdm",
+    "pyloudnorm",
     "aiohttp>=3.10.5",
 ]
 authors = [{name="Rajarshi Roy", email="rajarshir@nvidia.com"}]
@@ -25,6 +27,9 @@ moshi-offline = "moshi.offline:main"
 
 [tool.setuptools.dynamic]
 version = {attr = "moshi.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["moshi*"]
 
 [build-system]
 requires = ["setuptools"]
