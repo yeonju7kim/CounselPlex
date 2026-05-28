@@ -64,7 +64,7 @@ python -m moshi.offline \
 ```
 
 Each `<id>.wav` in the input directory is processed independently. Outputs:
-- `<id>.out.wav` — model's audio response (mono, 24 kHz)
+- `<id>.out.wav` — full-duplex stereo at 24 kHz (ch 0 = seeker input, ch 1 = CounselPlex)
 - `<id>.out.json` — per-frame text tokens emitted by the model
 - `<id>.out.forced.json` — per-frame mask (`true` = token was CUM-injected); written only when `--inject-cum` is on
 

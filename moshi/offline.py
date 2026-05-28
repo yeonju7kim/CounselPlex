@@ -485,7 +485,10 @@ def process_one(
             [output_pcm, np.zeros(pad_len, dtype=output_pcm.dtype)], axis=-1
         )
 
-    sphn.write_wav(output_wav, output_pcm, sample_rate)
+    user_ch = user_audio[0] if user_audio.ndim == 2 else user_audio
+    user_ch = user_ch[:total_target_samples].astype(output_pcm.dtype)
+    stereo_pcm = np.stack([user_ch, output_pcm], axis=0)
+    sphn.write_wav(output_wav, stereo_pcm, sample_rate)
     log("info", f"Wrote output audio to {output_wav}")
 
     with open(output_text, "w") as file:
