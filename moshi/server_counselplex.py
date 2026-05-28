@@ -211,6 +211,8 @@ class ServerState:
 
     def __init__(self, mimi: MimiModel, other_mimi: MimiModel, text_tokenizer: sentencepiece.SentencePieceProcessor,
                  lm: LMModel, device: str | torch.device, voice_prompt_dir: str | None = None,
+                 voice_prompt: str = "woman_supporter.wav",
+                 text_prompt: str = "You are a counselor.",
                  save_voice_prompt_embeddings: bool = False,
                  asr_model_size: str | None = None, asr_device: str = "cpu", asr_language: str = "en",
                  log_dir: str | None = None):
@@ -219,6 +221,8 @@ class ServerState:
         self.text_tokenizer = text_tokenizer
         self.device = device
         self.voice_prompt_dir = voice_prompt_dir
+        self.voice_prompt = voice_prompt
+        self.text_prompt = text_prompt
         self.frame_size = int(self.mimi.sample_rate / self.mimi.frame_rate)
         self.log_dir = log_dir
         self.asr_model = None
@@ -284,34 +288,32 @@ class ServerState:
         # self.lm_gen.top_k_text = max(1, int(request.query["text_topk"]))
         # self.lm_gen.top_k = max(1, int(request.query["audio_topk"]))
         
-        # Construct full voice prompt path
-        requested_voice_prompt_path = None
-        voice_prompt_path = None
-        if self.voice_prompt_dir is not None:
-            voice_prompt_filename = request.query["voice_prompt"]
-            requested_voice_prompt_path = None
-            if voice_prompt_filename:
-                requested_voice_prompt_path = os.path.join(self.voice_prompt_dir, voice_prompt_filename)
-            # If the voice prompt file does not exist, find a valid (s0) voiceprompt file in the directory
-            if requested_voice_prompt_path is None or not os.path.exists(requested_voice_prompt_path):
-                raise FileNotFoundError(
-                    f"Requested voice prompt '{voice_prompt_filename}' not found in '{self.voice_prompt_dir}'"
-                )
-            else:
-                voice_prompt_path = requested_voice_prompt_path
-                
+        # Voice/text prompts are fixed server-side for CounselPlex; any client
+        # selection from the WebUI is ignored.
+        client_voice = request.query.get("voice_prompt", "")
+        client_text = request.query.get("text_prompt", "")
+        if client_voice and client_voice != self.voice_prompt:
+            clog.log("info", f"ignoring client voice_prompt={client_voice!r}; using server default {self.voice_prompt!r}")
+        if client_text and client_text != self.text_prompt:
+            clog.log("info", f"ignoring client text_prompt={client_text!r}; using server default {self.text_prompt!r}")
+
+        voice_prompt_path = os.path.join(self.voice_prompt_dir, self.voice_prompt) if self.voice_prompt_dir else self.voice_prompt
+        if not os.path.exists(voice_prompt_path):
+            raise FileNotFoundError(
+                f"Server-configured voice prompt {voice_prompt_path!r} not found"
+            )
+
         if self.lm_gen.voice_prompt != voice_prompt_path:
             if voice_prompt_path.endswith('.pt'):
-                # Load pre-saved voice prompt embeddings
                 self.lm_gen.load_voice_prompt_embeddings(voice_prompt_path)
             else:
                 self.lm_gen.load_voice_prompt(voice_prompt_path)
-        self.lm_gen.text_prompt_tokens = self.text_tokenizer.encode(wrap_with_system_tags(request.query["text_prompt"])) if len(request.query["text_prompt"]) > 0 else None
+        self.lm_gen.text_prompt_tokens = (
+            self.text_tokenizer.encode(wrap_with_system_tags(self.text_prompt))
+            if self.text_prompt else None
+        )
         if session_logger:
-            session_logger.log_session_start(
-                request.query.get("text_prompt", ""),
-                str(voice_prompt_path) if voice_prompt_path else None,
-            )
+            session_logger.log_session_start(self.text_prompt, str(voice_prompt_path))
         seed = int(request["seed"]) if "seed" in request.query else None
 
         async def recv_loop():
@@ -461,10 +463,8 @@ class ServerState:
                     await ws.send_bytes(b"\x01" + msg)
 
         clog.log("info", "accepted connection")
-        if len(request.query["text_prompt"]) > 0:
-            clog.log("info", f"text prompt: {request.query['text_prompt']}")
-        if len(request.query["voice_prompt"]) > 0:
-            clog.log("info", f"voice prompt: {voice_prompt_path} (requested: {requested_voice_prompt_path})")
+        clog.log("info", f"text prompt: {self.text_prompt}")
+        clog.log("info", f"voice prompt: {voice_prompt_path}")
         close = False
         async with self.lock:
             if seed is not None and seed != -1:
@@ -591,8 +591,17 @@ def main():
         help=(
             "Directory containing voice prompt files. "
             "If omitted, voices.tgz is downloaded from HF and extracted."
-            "Voice prompt filenames from client requests will be joined with this directory path."
         )
+    )
+    parser.add_argument(
+        "--voice-prompt", type=str, default="woman_supporter.wav",
+        help="Voice prompt filename (basename) used for every session. "
+             "The CounselPlex WebUI's voice selection is ignored.",
+    )
+    parser.add_argument(
+        "--text-prompt", type=str, default="You are a counselor.",
+        help="Text/system prompt used for every session. "
+             "The CounselPlex WebUI's text selection is ignored.",
     )
     parser.add_argument(
         "--ssl",
@@ -682,6 +691,8 @@ def main():
         lm=lm,
         device=args.device,
         voice_prompt_dir=args.voice_prompt_dir,
+        voice_prompt=args.voice_prompt,
+        text_prompt=args.text_prompt,
         save_voice_prompt_embeddings=False,
         asr_model_size=args.asr_model,
         asr_device=args.asr_device,
