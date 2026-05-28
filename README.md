@@ -30,21 +30,16 @@ Requires Python ≥ 3.10 and a CUDA-capable GPU (≥ 24 GB recommended).
 
 ## Download model weights
 
-The large weight files are **not** included in this repo (GitHub file-size limits). Two downloads are needed:
+The large weight files are **not** included in this GitHub repo (file-size limits). Download both from [our HuggingFace Hub repo](https://huggingface.co/yeonju7kim/CounselPlex):
 
-**1. CounselPlex finetuned weights (16 GB)** — from [our HF Hub repo](https://huggingface.co/yeonju7kim/CounselPlex):
 ```bash
-hf download yeonju7kim/CounselPlex counselplex.pt \
+hf download yeonju7kim/CounselPlex \
+  counselplex.pt mimi.safetensors \
   --local-dir checkpoints/
 ```
 
-**2. Mimi audio codec (367 MB)** — from [Kyutai's Moshi release](https://huggingface.co/kyutai/moshiko-pytorch-bf16) (this is the upstream component, not finetuned by us):
-```bash
-hf download kyutai/moshiko-pytorch-bf16 \
-  tokenizer-e351c8d8-checkpoint125.safetensors \
-  --local-dir checkpoints/
-mv checkpoints/tokenizer-e351c8d8-checkpoint125.safetensors checkpoints/mimi.safetensors
-```
+- `counselplex.pt` (16 GB) — the finetuned CounselPlex model (8.4 B parameters)
+- `mimi.safetensors` (367 MB) — Mimi audio codec; the file is a verbatim copy of `tokenizer-e351c8d8-checkpoint125.safetensors` from Kyutai's [`kyutai/moshiko-pytorch-bf16`](https://huggingface.co/kyutai/moshiko-pytorch-bf16) (mirrored here for reproducibility — we did not retrain it)
 
 Smaller assets (text tokenizer, voice prompts) are committed directly in this repo.
 
