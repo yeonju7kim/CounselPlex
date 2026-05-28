@@ -31,6 +31,7 @@ import json
 import random
 import os
 from pathlib import Path
+import shutil
 import tarfile
 import time
 import secrets
@@ -550,6 +551,45 @@ def _get_voice_prompt_dir(voice_prompt_dir: Optional[str], hf_repo: str) -> Opti
     return str(voices_dir)
 
 
+def _patch_dist_for_counselplex(dist_dir: str) -> str:
+    """Copy the upstream PersonaPlex dist to a sibling directory and apply
+    CounselPlex branding: rename the title/subtitle and hide the text/voice
+    prompt selection UI (those choices are server-side now). Returns the
+    patched directory's path. Re-applied on every server start so changes to
+    the patch set always take effect."""
+    src = Path(dist_dir)
+    dst = src.parent / "dist_counselplex"
+    if dst.exists():
+        shutil.rmtree(dst)
+    shutil.copytree(src, dst)
+
+    for js in dst.glob("assets/index-*.js"):
+        text = js.read_text(encoding="utf-8")
+        text = text.replace(
+            '"PersonaPlex"', '"CounselPlex"',
+        ).replace(
+            '"Full duplex conversational AI with text and voice control."',
+            '"A Stressor-Aware Full-Duplex Counseling Model"',
+        )
+        js.write_text(text, encoding="utf-8")
+
+    idx = dst / "index.html"
+    if idx.exists():
+        html = idx.read_text(encoding="utf-8")
+        html = html.replace("<title>PersonaPlex</title>", "<title>CounselPlex</title>")
+        overlay = (
+            "    <style>\n"
+            "      /* Hide text/voice prompt selection — chosen server-side. */\n"
+            "      div:has(> label[for=\"text-prompt\"]),\n"
+            "      div:has(> label[for=\"voice-prompt\"]) { display: none !important; }\n"
+            "    </style>\n  </head>"
+        )
+        html = html.replace("  </head>", overlay)
+        idx.write_text(html, encoding="utf-8")
+
+    return str(dst)
+
+
 def _get_static_path(static: Optional[str]) -> Optional[str]:
     if static is None:
         logger.info("retrieving the static content")
@@ -559,7 +599,7 @@ def _get_static_path(static: Optional[str]) -> Optional[str]:
         if not dist.exists():
             with tarfile.open(dist_tgz, "r:gz") as tar:
                 tar.extractall(path=dist_tgz.parent)
-        return str(dist)
+        return _patch_dist_for_counselplex(str(dist))
     elif static != "none":
         # When set to the "none" string, we don't serve any static content.
         return static
