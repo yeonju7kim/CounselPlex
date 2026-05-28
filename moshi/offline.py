@@ -539,7 +539,7 @@ def main():
     parser.add_argument("--text-prompt", default="You are a wise and friendly teacher. Answer questions or provide advice in a clear and engaging way.", type=str, help="Text prompt")
 
     parser.add_argument(
-        "--voice-prompt", required=True, type=str, help="Voice prompt filename (basename) inside --voice-prompt-dir (e.g. 'NATM1.pt')."
+        "--voice-prompt", required=True, type=str, help="Voice prompt filename (basename) inside --voice-prompt-dir (e.g. 'woman_supporter.wav')."
     )
     parser.add_argument(
         "--voice-prompt-dir",
