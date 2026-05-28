@@ -1,0 +1,256 @@
+{
+  "conv_id": "escot_test_1549",
+  "sample_rate": 24000,
+  "frame_rate": 12.5,
+  "n_frames": 3063,
+  "turns": [
+    {
+      "turn_id": 1,
+      "strategy": "Reflection of feelings",
+      "seeker_gt": "It's just really toxic, and it's making me dread going to work every day.",
+      "supporter_gt": "So, I hear you saying that your work environment is really causing you a lot of discomfort.",
+      "supporter_gen_think": "",
+      "supporter_gen_speech": "Can you tell me more about what is making the office a toxic environment?",
+      "supporter_gen_think_forced": [],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        0,
+        150720
+      ],
+      "silence_window_samples": [
+        150720,
+        570240
+      ],
+      "seeker_window_frames": [
+        0,
+        78
+      ],
+      "silence_window_frames": [
+        78,
+        297
+      ]
+    },
+    {
+      "turn_id": 3,
+      "strategy": "Question",
+      "seeker_gt": "That's right.",
+      "supporter_gt": "Could you give me a little more detail about what specifically is toxic about it?",
+      "supporter_gen_think": "",
+      "supporter_gen_speech": "That's concerning. Would you be able to do a quick stress check in the moment for me?",
+      "supporter_gen_think_forced": [],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        570240,
+        622080
+      ],
+      "silence_window_samples": [
+        622080,
+        1063680
+      ],
+      "seeker_window_frames": [
+        297,
+        324
+      ],
+      "silence_window_frames": [
+        324,
+        554
+      ]
+    },
+    {
+      "turn_id": 5,
+      "strategy": "Reflection of feelings",
+      "seeker_gt": "Well, there's a lot of gossiping and backstabbing that goes on, and everyone seems to be out for themselves instead of working as a team. Additionally, my boss can be really critical and micromanaging.",
+      "supporter_gt": "So, your work environment feels like it's characterized by backstabbing, gossiping, and people being out for themselves rather than working as a team. On top of that, your boss can be really critical and micromanaging. That sounds really tough.",
+      "supporter_gen_think": "workplace conflict",
+      "supporter_gen_speech": "That sounds like lot of pressure to work under, and it makes sense that you feel stressed about this situation. To make sure we are clear on what we are discussing, could you give me an example of what the boss's micromanaging does?",
+      "supporter_gen_think_forced": [],
+      "supporter_gen_think_free": [
+        "workplace conflict"
+      ],
+      "seeker_window_samples": [
+        1063680,
+        1434240
+      ],
+      "silence_window_samples": [
+        1434240,
+        2117760
+      ],
+      "seeker_window_frames": [
+        554,
+        747
+      ],
+      "silence_window_frames": [
+        747,
+        1103
+      ]
+    },
+    {
+      "turn_id": 7,
+      "strategy": "Reflection of feelings",
+      "seeker_gt": "Yes, it is.",
+      "supporter_gt": "It sounds like you're feeling really anxious and uncomfortable about going to work. Is that accurate?",
+      "supporter_gen_think": "workplace conflict",
+      "supporter_gen_speech": "Can you imagine a scenario where your boss might be micromanaging your workload?",
+      "supporter_gen_think_forced": [
+        "workplace conflict"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        2117760,
+        2155200
+      ],
+      "silence_window_samples": [
+        2155200,
+        2559360
+      ],
+      "seeker_window_frames": [
+        1103,
+        1122
+      ],
+      "silence_window_frames": [
+        1122,
+        1333
+      ]
+    },
+    {
+      "turn_id": 9,
+      "strategy": "Affirmation and Reassurance",
+      "seeker_gt": "Absolutely. I dread it every day.",
+      "supporter_gt": "I just want to let you know that I think it's really admirable that you're seeking help to deal with this. That shows a lot of strength and resilience.",
+      "supporter_gen_think": "workplace conflict",
+      "supporter_gen_speech": "Have you tried having a conversation with your boss to let them know how you're feeling?",
+      "supporter_gen_think_forced": [
+        "workplace conflict"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        2559360,
+        2640960
+      ],
+      "silence_window_samples": [
+        2640960,
+        3126720
+      ],
+      "seeker_window_frames": [
+        1333,
+        1376
+      ],
+      "silence_window_frames": [
+        1376,
+        1628
+      ]
+    },
+    {
+      "turn_id": 11,
+      "strategy": "Providing Suggestions",
+      "seeker_gt": "Thank you, I really appreciate that.",
+      "supporter_gt": "One thing that I might suggest is reaching out to some colleagues who you have a good relationship with and see if you can create some kind of support system. That might help you feel less isolated at work.",
+      "supporter_gen_think": "workplace conflict",
+      "supporter_gen_speech": "Can you tell me about a situation when you felt your work was being micromanaged by your boss?",
+      "supporter_gen_think_forced": [
+        "workplace conflict"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        3126720,
+        3209280
+      ],
+      "silence_window_samples": [
+        3209280,
+        3772800
+      ],
+      "seeker_window_frames": [
+        1628,
+        1672
+      ],
+      "silence_window_frames": [
+        1672,
+        1965
+      ]
+    },
+    {
+      "turn_id": 13,
+      "strategy": "Imagery",
+      "seeker_gt": "That's a good idea. Thank you.",
+      "supporter_gt": "Another thing that might be helpful is imagining what your ideal work environment would look like. What kinds of things would be different? How would people interact with each other? Just taking some time to visualize that might help you identify things that you can work towards changing.",
+      "supporter_gen_think": "workplace conflict",
+      "supporter_gen_speech": "Can you give me 3 different ways you are dealing with the situation right now?",
+      "supporter_gen_think_forced": [
+        "workplace conflict"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        3772800,
+        3821760
+      ],
+      "silence_window_samples": [
+        3821760,
+        4512000
+      ],
+      "seeker_window_frames": [
+        1965,
+        1990
+      ],
+      "silence_window_frames": [
+        1990,
+        2350
+      ]
+    },
+    {
+      "turn_id": 15,
+      "strategy": "Summarize",
+      "seeker_gt": "Okay, I'll try that.",
+      "supporter_gt": "So, it sounds like you're dealing with a really toxic work environment that's causing you a lot of stress and anxiety. We've talked about trying to create a support system and visualizing what your ideal work environment would look like. Does that sound like a good summary of what we've discussed so far?",
+      "supporter_gen_think": "workplace conflict",
+      "supporter_gen_speech": "How have you been able to get through this situation so far?",
+      "supporter_gen_think_forced": [
+        "workplace conflict"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        4512000,
+        4572480
+      ],
+      "silence_window_samples": [
+        4572480,
+        5284800
+      ],
+      "seeker_window_frames": [
+        2350,
+        2382
+      ],
+      "silence_window_frames": [
+        2382,
+        2752
+      ]
+    },
+    {
+      "turn_id": 17,
+      "strategy": "Affirmation and Reassurance",
+      "seeker_gt": "Yes, it does.",
+      "supporter_gt": "I just want to reassure you that I believe in you and your ability to get through this. You're strong and capable, and you deserve to work in an environment that supports you.",
+      "supporter_gen_think": "workplace conflict",
+      "supporter_gen_speech": "It sounds like you’re stuck in a toxic situation, and you feel like you have no",
+      "supporter_gen_think_forced": [
+        "workplace conflict"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        5284800,
+        5345280
+      ],
+      "silence_window_samples": [
+        5345280,
+        5880960
+      ],
+      "seeker_window_frames": [
+        2752,
+        2784
+      ],
+      "silence_window_frames": [
+        2784,
+        3063
+      ]
+    }
+  ]
+}

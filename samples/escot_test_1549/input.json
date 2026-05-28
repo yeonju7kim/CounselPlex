@@ -1,0 +1,165 @@
+{
+  "conv_id": "escot_test_1549",
+  "sample_rate": 24000,
+  "frame_rate": 12.5,
+  "buffer_seconds": 10.0,
+  "system_prompt": "You are a counselor.",
+  "n_turns": 9,
+  "total_samples": 5880960,
+  "total_seconds": 245.04,
+  "turns": [
+    {
+      "turn_id": 1,
+      "strategy": "Reflection of feelings",
+      "seeker_start_sample": 0,
+      "seeker_end_sample": 150720,
+      "silence_start_sample": 150720,
+      "silence_end_sample": 570240,
+      "gap_samples": 0,
+      "supporter_len_samples": 179520,
+      "buffer_samples": 240000,
+      "seeker_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_01_seeker.wav"
+      ],
+      "supporter_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_02_supporter.wav"
+      ]
+    },
+    {
+      "turn_id": 3,
+      "strategy": "Question",
+      "seeker_start_sample": 570240,
+      "seeker_end_sample": 622080,
+      "silence_start_sample": 622080,
+      "silence_end_sample": 1063680,
+      "gap_samples": 5760,
+      "supporter_len_samples": 195840,
+      "buffer_samples": 240000,
+      "seeker_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_03_seeker.wav"
+      ],
+      "supporter_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_04_supporter.wav"
+      ]
+    },
+    {
+      "turn_id": 5,
+      "strategy": "Reflection of feelings",
+      "seeker_start_sample": 1063680,
+      "seeker_end_sample": 1434240,
+      "silence_start_sample": 1434240,
+      "silence_end_sample": 2117760,
+      "gap_samples": 19200,
+      "supporter_len_samples": 424320,
+      "buffer_samples": 240000,
+      "seeker_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_05_seeker.wav"
+      ],
+      "supporter_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_06_supporter.wav"
+      ]
+    },
+    {
+      "turn_id": 7,
+      "strategy": "Reflection of feelings",
+      "seeker_start_sample": 2117760,
+      "seeker_end_sample": 2155200,
+      "silence_start_sample": 2155200,
+      "silence_end_sample": 2559360,
+      "gap_samples": 1920,
+      "supporter_len_samples": 162240,
+      "buffer_samples": 240000,
+      "seeker_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_07_seeker.wav"
+      ],
+      "supporter_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_08_supporter.wav"
+      ]
+    },
+    {
+      "turn_id": 9,
+      "strategy": "Affirmation and Reassurance",
+      "seeker_start_sample": 2559360,
+      "seeker_end_sample": 2640960,
+      "silence_start_sample": 2640960,
+      "silence_end_sample": 3126720,
+      "gap_samples": 11520,
+      "supporter_len_samples": 234240,
+      "buffer_samples": 240000,
+      "seeker_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_09_seeker.wav"
+      ],
+      "supporter_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_10_supporter.wav"
+      ]
+    },
+    {
+      "turn_id": 11,
+      "strategy": "Providing Suggestions",
+      "seeker_start_sample": 3126720,
+      "seeker_end_sample": 3209280,
+      "silence_start_sample": 3209280,
+      "silence_end_sample": 3772800,
+      "gap_samples": 3840,
+      "supporter_len_samples": 319680,
+      "buffer_samples": 240000,
+      "seeker_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_11_seeker.wav"
+      ],
+      "supporter_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_12_supporter.wav"
+      ]
+    },
+    {
+      "turn_id": 13,
+      "strategy": "Imagery",
+      "seeker_start_sample": 3772800,
+      "seeker_end_sample": 3821760,
+      "silence_start_sample": 3821760,
+      "silence_end_sample": 4512000,
+      "gap_samples": 17280,
+      "supporter_len_samples": 432960,
+      "buffer_samples": 240000,
+      "seeker_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_13_seeker.wav"
+      ],
+      "supporter_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_14_supporter.wav"
+      ]
+    },
+    {
+      "turn_id": 15,
+      "strategy": "Summarize",
+      "seeker_start_sample": 4512000,
+      "seeker_end_sample": 4572480,
+      "silence_start_sample": 4572480,
+      "silence_end_sample": 5284800,
+      "gap_samples": 17280,
+      "supporter_len_samples": 455040,
+      "buffer_samples": 240000,
+      "seeker_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_15_seeker.wav"
+      ],
+      "supporter_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_16_supporter.wav"
+      ]
+    },
+    {
+      "turn_id": 17,
+      "strategy": "Affirmation and Reassurance",
+      "seeker_start_sample": 5284800,
+      "seeker_end_sample": 5345280,
+      "silence_start_sample": 5345280,
+      "silence_end_sample": 5880960,
+      "gap_samples": 19200,
+      "supporter_len_samples": 276480,
+      "buffer_samples": 240000,
+      "seeker_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_17_seeker.wav"
+      ],
+      "supporter_wavs": [
+        "/mnt/ssd_yeonju2/yeonju/project/counseling_cot_duplex/Data-Synthesis/output/dataset/escot/test/escot_test_1549/turn_18_supporter.wav"
+      ]
+    }
+  ]
+}

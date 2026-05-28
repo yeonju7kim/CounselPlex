@@ -1,0 +1,101 @@
+=== conv_id: escot_test_1554 ===
+(L=generated supporter, R=seeker input; sr=24000, frames=4440)  (inject-cum mode: forced=injected, model=self-emitted)
+
+[Turn 1]  (strategy: Reflection of feelings)
+  Seeker (GT)             : Yes, I am thinking about making a career shift or moving to a new location, but I'm feeling overwhelmed and unsure about what to do.
+  Supporter (GT)          : It sounds like you have a lot on your plate and are struggling with making this decision.
+  Supporter (think, INJ)  : -
+  Supporter (think, MODEL): career relocation decision
+  Supporter (speech)      : Hello, thank you for reaching out to me. It sounds like you're considering a major life change and I’m here to support you however I can.
+
+[Turn 3]  (strategy: Reflection of feelings)
+  Seeker (GT)             : Yes, I've been feeling anxious and stressed out.
+  Supporter (GT)          : It sounds like you're considering a major life change, but you're feeling uncertain and overwhelmed.
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : I can understand that you must be feeling really stressed about the decision you need to make about your life path. It seems like you want to make a different choice but you don' know where to start.
+
+[Turn 5]  (strategy: Question)
+  Seeker (GT)             : That's right. I've been thinking about changing my career for a while now, but I'm not sure if it's the right move for me.
+  Supporter (GT)          : Can you tell me more about your current job and what's been making you consider a career change?
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Have you researched what kind of careers are similar to what you're doing now? That could be a good way to see if there's change in industry that you might want to make for yourself.
+
+[Turn 7]  (strategy: Reflection of feelings)
+  Seeker (GT)             : I've been working in the same field for years, and while it's stable, I don't feel challenged or motivated anymore.
+  Supporter (GT)          : So it seems like you're feeling stuck in your current job and looking for something more fulfilling.
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : It sounds like you' feeling a little bit lost about your job and maybe the right direction for your career, but you're open to considering a big change if necessary.
+
+[Turn 9]  (strategy: Affirmation and Reassurance)
+  Seeker (GT)             : Yes, exactly.
+  Supporter (GT)          : It takes courage to pursue a major career change, and I want you to know that you have the strength and capability to make the best decision for yourself.
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Have you considered taking any interest tests or finding out what your personal goals are? Having a clear idea of what you want to achieve in your career could help you decide if a change would be a right move for you.
+
+[Turn 11]  (strategy: Providing Suggestions)
+  Seeker (GT)             : Thank you, that means a lot.
+  Supporter (GT)          : Have you considered what other fields or industries might interest you?
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : How does your family and friends react when you start talking about the possibility of making a change? Do their reactions sway your decision at all?
+
+[Turn 13]  (strategy: Question)
+  Seeker (GT)             : Yes, I've been researching different options and talking to people in other fields to see what might be a good fit for me.
+  Supporter (GT)          : That's a great first step. Have you also thought about any potential downsides to making a career change?
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : I am more than glad to hear that! Have you put together a budget and seen what the financial impact would be from changing your status to your marriage?
+
+[Turn 15]  (strategy: Providing Suggestions)
+  Seeker (GT)             : Yes, I'm worried about potentially starting from scratch and losing the financial stability I have now.
+  Supporter (GT)          : It might be helpful to create a pros and cons list to weigh the potential benefits and drawbacks of making a career change. You can also research any potential financial resources or opportunities to ease the transition.
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : It's scary, it sounds like. But it seems like you' being very proactive about this decision and searching for the wisest advice that you can get.
+
+[Turn 17]  (strategy: Imagery)
+  Seeker (GT)             : That sounds like a good idea.
+  Supporter (GT)          : Try to picture yourself in different scenarios, both in your current role and in potential new ones. How do you feel in each situation, both emotionally and mentally?
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : How about this? You could try exploring whether or not there is another way to make these changes in your career without the starting over part. There may be some other options!
+
+[Turn 19]  (strategy: Reflection of feelings)
+  Seeker (GT)             : I can imagine feeling more fulfilled and motivated in a new role, but also anxious about the uncertainty that comes with change.
+  Supporter (GT)          : It sounds like you're experiencing a mixture of excitement and fear about the possibility of change.
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Can you tell me more about what it means to you to feel fulfilled at your job right now? What do you enjoy about that work, and why are you feeling unfulfilled with the decision you've made in the past?
+
+[Turn 21]  (strategy: Take Responsibility)
+  Seeker (GT)             : Yes, that's exactly it.
+  Supporter (GT)          : Remember that ultimately, the decision to make a career change is yours to make. It's important to take responsibility for your choices and trust that you can handle any challenges that come your way.
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Would you be willing to try a little exercise with me and then we can talk about it?
+
+[Turn 23]  (strategy: Question)
+  Seeker (GT)             : Thank you, I appreciate that reminder.
+  Supporter (GT)          : How have you been taking care of yourself during this stressful time?
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Have you thought about how you might be able to connect with someone in this new city who could help you feel less alone as you adjust to this new life?
+
+[Turn 25]  (strategy: Question)
+  Seeker (GT)             : I've been trying to exercise more and spend time with friends and family, but it's been tough to find the time and energy.
+  Supporter (GT)          : It's important to prioritize your mental and physical health during times of stress. Are there any specific self-care practices that you find helpful?
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : You're already doing an amazing job. Keep up the good work! Have you considered volunteering for any community guidelines groups or non-profits that may be in the area? That could be another way to feel like your giving back to your community and making a difference. volunteering
+
+[Turn 27]  (strategy: Restatement or Paraphrasing)
+  Seeker (GT)             : I like to meditate and journal, but I haven't been doing it regularly.
+  Supporter (GT)          : So it sounds like you could benefit from prioritizing self-care activities, even if it means making some sacrifices in other areas.
+  Supporter (think, INJ)  : career relocation decision
+  Supporter (think, MODEL): -
+  Supporter (speech)      : 
+

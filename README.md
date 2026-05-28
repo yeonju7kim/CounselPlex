@@ -15,6 +15,14 @@ CounselPlex/
 │   ├── mimi.safetensors         # audio codec
 │   ├── tokenizer.model          # SentencePiece text tokenizer
 │   └── voices/                  # voice prompt embeddings + sample wav
+├── evaluation/                  # reproduce the paper's M5 scores
+│   ├── run_judge.py             # GPT-4.1 5-dim judge (non-silent turns)
+│   ├── run_judge_silence.py     # silence-appropriateness judge
+│   ├── aggregate.py             # final M5 table
+│   ├── build_eval_results.py    # moshi.offline output → per-conv result.json
+│   ├── rubrics/                 # exact prompts handed to the judge
+│   └── data/test_dataset.jsonl  # 535 conv / 6,278 turn test split
+├── samples/                     # 3 end-to-end inference examples (input + output wav)
 ├── pyproject.toml / requirements.txt
 └── LICENSE
 ```
@@ -93,6 +101,27 @@ Connect a Moshi-compatible client (sends 24 kHz mono PCM frames, receives the sa
 | `--seed` | 42 |
 
 `--inject-cum` enables cross-turn stressor carrying via cumulative think-token injection; it is the inference-time switch matching the "inject-cum" training pattern.
+
+## Reproducing the paper's evaluation
+
+The full pipeline (inference → judge → aggregate) is documented in [`evaluation/README.md`](evaluation/README.md). High level:
+
+```bash
+export OPENAI_API_KEY=sk-...
+
+# 1) run moshi.offline on the 535-conv test set (see evaluation/data/test_dataset.jsonl)
+# 2) post-process raw outputs:
+python evaluation/build_eval_results.py --input-dir … --offline-dir … --output-dir results/
+
+# 3) judge:
+python evaluation/run_judge.py         --results-dir results/ --out-dir eval/
+python evaluation/run_judge_silence.py --results-dir results/ --out-dir eval_silence/
+
+# 4) aggregate to the final M5 table:
+python evaluation/aggregate.py --abs-dir eval/ --silence-dir eval_silence/ --name CounselPlex
+```
+
+Full-Duplex-Bench metrics use the upstream [FDB pipeline](https://github.com/DanielLin94144/Full-Duplex-Bench) — not duplicated here.
 
 ## License
 

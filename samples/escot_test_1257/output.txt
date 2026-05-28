@@ -1,0 +1,108 @@
+=== conv_id: escot_test_1257 ===
+(L=generated supporter, R=seeker input; sr=24000, frames=4207)  (inject-cum mode: forced=injected, model=self-emitted)
+
+[Turn 0]  (strategy: Reflection of feelings)
+  Seeker (GT)             : I've been struggling with my body image for a while now. I feel like I'm always comparing myself to others and I can't seem to shake it off.
+  Supporter (GT)          : It sounds like you're feeling really frustrated and unhappy with how you perceive your body.
+  Supporter (think, INJ)  : -
+  Supporter (think, MODEL): appearance anxiety
+  Supporter (speech)      : It sounds like you' been stuck on this idea for a while. Would you like to try and take it from a whole new perspective?
+
+[Turn 2]  (strategy: Reflection of feelings)
+  Seeker (GT)             : Yes, I just wish I could be more accepting of myself.
+  Supporter (GT)          : It sounds like developing an acceptance of your body is a goal for you, is that correct?
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Can you tell me more about the sources of your body image concerns?
+
+[Turn 4]  (strategy: Question)
+  Seeker (GT)             : Yes, that's what I want.
+  Supporter (GT)          : What kind of thoughts go through your head when you're having these negative feelings about yourself?
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : What are some steps you would be willing to take towards being more confident in other areas of yourself?
+
+[Turn 6]  (strategy: Reflection of feelings)
+  Seeker (GT)             : I just can't stop thinking about how I should look and how I fall short.
+  Supporter (GT)          : It seems like your negative thoughts are causing a lot of distress for you.
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : You're not alone, I go through the same thing at times.
+
+[Turn 8]  (strategy: Reflection of feelings)
+  Seeker (GT)             : Yes, they are.
+  Supporter (GT)          : I can only imagine how challenging it must be to feel like you're not measuring up.
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Have you talked to anyone about how you're feeling?
+
+[Turn 10]  (strategy: Question)
+  Seeker (GT)             : It's really tough.
+  Supporter (GT)          : It sounds like you may be struggling with feelings of low self-esteem. Have you noticed any specific triggers that make you feel worse about yourself?
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Can you give me some specific guidance on what you might like to work on that will make you feel more comfortable with your appearance?
+
+[Turn 12]  (strategy: Providing Suggestions)
+  Seeker (GT)             : Not really, it just seems to happen randomly.
+  Supporter (GT)          : Have you ever tried practicing self-care activities like meditation or yoga?
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : It sounds like you’re frustrated with your body image lows and highs. Would you be willing to try a new routine this week, like going for a run without your phone?
+
+[Turn 14]  (strategy: Information)
+  Seeker (GT)             : No, I haven't.
+  Supporter (GT)          : Research has shown that engaging in activities like yoga, meditation, or deep breathing exercises can have a calming effect on the mind and body and help reduce stress and anxiety.
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Can you give me one small step that you could try this week towards feeling better about yourself?
+
+[Turn 16]  (strategy: Providing Suggestions)
+  Seeker (GT)             : That sounds interesting.
+  Supporter (GT)          : Why don't you try taking a yoga class or downloading a meditation app? Even if it feels strange at first, it might help you feel more grounded in your own body.
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : You're struggling with appearance anxiety but you're willing to take steps toward feeling more confident.
+
+[Turn 18]  (strategy: Affirmation and Reassurance)
+  Seeker (GT)             : I'll give it a try.
+  Supporter (GT)          : I believe in you and I think you can find a way to feel more comfortable in your own skin.
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Of course! Your health and wellness are truly important to us here at Peak Wellness Center. Thank you for recognizing that, we appreciate all the feedback you give us.
+
+[Turn 20]  (strategy: Providing Suggestions)
+  Seeker (GT)             : Thank you, that means a lot.
+  Supporter (GT)          : How do you feel about reaching out to a therapist or counselor who specializes in body image issues?
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : For your workout this week, would you like to talk through some of our past sessions? We can review them if there's something that might be helpful to you!
+
+[Turn 22]  (strategy: Affirmation and Reassurance)
+  Seeker (GT)             : I'm not sure...I feel like it might be embarrassing to talk about.
+  Supporter (GT)          : It makes sense that you might feel hesitant to seek professional help, but remember that therapists are trained to help people work through challenging issues like this one.
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Have you checked out any of our content on line? We have a podcast and there are other free resources that may help you feel better about yourself too.
+
+[Turn 24]  (strategy: Affirmation and Reassurance)
+  Seeker (GT)             : That's a good point.
+  Supporter (GT)          : Remember, there's no shame in seeking help when you need it. I'm proud of you for being brave enough to talk to me about this.
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : You could try listening to a few episodes before your workout, just to see if it' something that makes sense for you.
+
+[Turn 26]  (strategy: Providing Suggestions)
+  Seeker (GT)             : Thank you, that means a lot.
+  Supporter (GT)          : Why don't you try doing one thing each day that makes you feel good about yourself? It can be as simple as taking a bubble bath or going for a walk outside.
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Your appearance anxiety I know this is tough but we believe in you and want to make sure that you feel good and confident when you look at yourself in the mirror (and beyond) That’s what we do here! You can always talk through your issues with us too We are happy to help you out if need be So let me just say that again so it sinks in : You are beautiful and amazing no matter how you look You know that deep down and we believe in you too
+
+[Turn 28]  (strategy: Imagery)
+  Seeker (GT)             : I like that idea.
+  Supporter (GT)          : Can you picture what it would feel like to be more accepting of yourself and your body?
+  Supporter (think, INJ)  : appearance anxiety
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Please take that as best advice you will ever get.
+

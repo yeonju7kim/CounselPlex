@@ -1,0 +1,66 @@
+=== conv_id: escot_test_1549 ===
+(L=generated supporter, R=seeker input; sr=24000, frames=3063)  (inject-cum mode: forced=injected, model=self-emitted)
+
+[Turn 1]  (strategy: Reflection of feelings)
+  Seeker (GT)             : It's just really toxic, and it's making me dread going to work every day.
+  Supporter (GT)          : So, I hear you saying that your work environment is really causing you a lot of discomfort.
+  Supporter (think, INJ)  : -
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Can you tell me more about what is making the office a toxic environment?
+
+[Turn 3]  (strategy: Question)
+  Seeker (GT)             : That's right.
+  Supporter (GT)          : Could you give me a little more detail about what specifically is toxic about it?
+  Supporter (think, INJ)  : -
+  Supporter (think, MODEL): -
+  Supporter (speech)      : That's concerning. Would you be able to do a quick stress check in the moment for me?
+
+[Turn 5]  (strategy: Reflection of feelings)
+  Seeker (GT)             : Well, there's a lot of gossiping and backstabbing that goes on, and everyone seems to be out for themselves instead of working as a team. Additionally, my boss can be really critical and micromanaging.
+  Supporter (GT)          : So, your work environment feels like it's characterized by backstabbing, gossiping, and people being out for themselves rather than working as a team. On top of that, your boss can be really critical and micromanaging. That sounds really tough.
+  Supporter (think, INJ)  : -
+  Supporter (think, MODEL): workplace conflict
+  Supporter (speech)      : That sounds like lot of pressure to work under, and it makes sense that you feel stressed about this situation. To make sure we are clear on what we are discussing, could you give me an example of what the boss's micromanaging does?
+
+[Turn 7]  (strategy: Reflection of feelings)
+  Seeker (GT)             : Yes, it is.
+  Supporter (GT)          : It sounds like you're feeling really anxious and uncomfortable about going to work. Is that accurate?
+  Supporter (think, INJ)  : workplace conflict
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Can you imagine a scenario where your boss might be micromanaging your workload?
+
+[Turn 9]  (strategy: Affirmation and Reassurance)
+  Seeker (GT)             : Absolutely. I dread it every day.
+  Supporter (GT)          : I just want to let you know that I think it's really admirable that you're seeking help to deal with this. That shows a lot of strength and resilience.
+  Supporter (think, INJ)  : workplace conflict
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Have you tried having a conversation with your boss to let them know how you're feeling?
+
+[Turn 11]  (strategy: Providing Suggestions)
+  Seeker (GT)             : Thank you, I really appreciate that.
+  Supporter (GT)          : One thing that I might suggest is reaching out to some colleagues who you have a good relationship with and see if you can create some kind of support system. That might help you feel less isolated at work.
+  Supporter (think, INJ)  : workplace conflict
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Can you tell me about a situation when you felt your work was being micromanaged by your boss?
+
+[Turn 13]  (strategy: Imagery)
+  Seeker (GT)             : That's a good idea. Thank you.
+  Supporter (GT)          : Another thing that might be helpful is imagining what your ideal work environment would look like. What kinds of things would be different? How would people interact with each other? Just taking some time to visualize that might help you identify things that you can work towards changing.
+  Supporter (think, INJ)  : workplace conflict
+  Supporter (think, MODEL): -
+  Supporter (speech)      : Can you give me 3 different ways you are dealing with the situation right now?
+
+[Turn 15]  (strategy: Summarize)
+  Seeker (GT)             : Okay, I'll try that.
+  Supporter (GT)          : So, it sounds like you're dealing with a really toxic work environment that's causing you a lot of stress and anxiety. We've talked about trying to create a support system and visualizing what your ideal work environment would look like. Does that sound like a good summary of what we've discussed so far?
+  Supporter (think, INJ)  : workplace conflict
+  Supporter (think, MODEL): -
+  Supporter (speech)      : How have you been able to get through this situation so far?
+
+[Turn 17]  (strategy: Affirmation and Reassurance)
+  Seeker (GT)             : Yes, it does.
+  Supporter (GT)          : I just want to reassure you that I believe in you and your ability to get through this. You're strong and capable, and you deserve to work in an environment that supports you.
+  Supporter (think, INJ)  : workplace conflict
+  Supporter (think, MODEL): -
+  Supporter (speech)      : It sounds like you’re stuck in a toxic situation, and you feel like you have no
+

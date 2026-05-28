@@ -16,3 +16,4 @@ venv/
 .vscode/
 .idea/
 .DS_Store
+.venv_test/

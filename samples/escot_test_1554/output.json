@@ -1,0 +1,400 @@
+{
+  "conv_id": "escot_test_1554",
+  "sample_rate": 24000,
+  "frame_rate": 12.5,
+  "n_frames": 4440,
+  "turns": [
+    {
+      "turn_id": 1,
+      "strategy": "Reflection of feelings",
+      "seeker_gt": "Yes, I am thinking about making a career shift or moving to a new location, but I'm feeling overwhelmed and unsure about what to do.",
+      "supporter_gt": "It sounds like you have a lot on your plate and are struggling with making this decision.",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "Hello, thank you for reaching out to me. It sounds like you're considering a major life change and I’m here to support you however I can.",
+      "supporter_gen_think_forced": [],
+      "supporter_gen_think_free": [
+        "career relocation decision"
+      ],
+      "seeker_window_samples": [
+        0,
+        240000
+      ],
+      "silence_window_samples": [
+        240000,
+        625920
+      ],
+      "seeker_window_frames": [
+        0,
+        125
+      ],
+      "silence_window_frames": [
+        125,
+        326
+      ]
+    },
+    {
+      "turn_id": 3,
+      "strategy": "Reflection of feelings",
+      "seeker_gt": "Yes, I've been feeling anxious and stressed out.",
+      "supporter_gt": "It sounds like you're considering a major life change, but you're feeling uncertain and overwhelmed.",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "I can understand that you must be feeling really stressed about the decision you need to make about your life path. It seems like you want to make a different choice but you don' know where to start.",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        625920,
+        721920
+      ],
+      "silence_window_samples": [
+        721920,
+        1138560
+      ],
+      "seeker_window_frames": [
+        326,
+        376
+      ],
+      "silence_window_frames": [
+        376,
+        593
+      ]
+    },
+    {
+      "turn_id": 5,
+      "strategy": "Question",
+      "seeker_gt": "That's right. I've been thinking about changing my career for a while now, but I'm not sure if it's the right move for me.",
+      "supporter_gt": "Can you tell me more about your current job and what's been making you consider a career change?",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "Have you researched what kind of careers are similar to what you're doing now? That could be a good way to see if there's change in industry that you might want to make for yourself.",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        1138560,
+        1335360
+      ],
+      "silence_window_samples": [
+        1335360,
+        1748160
+      ],
+      "seeker_window_frames": [
+        593,
+        696
+      ],
+      "silence_window_frames": [
+        696,
+        910
+      ]
+    },
+    {
+      "turn_id": 7,
+      "strategy": "Reflection of feelings",
+      "seeker_gt": "I've been working in the same field for years, and while it's stable, I don't feel challenged or motivated anymore.",
+      "supporter_gt": "So it seems like you're feeling stuck in your current job and looking for something more fulfilling.",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "It sounds like you' feeling a little bit lost about your job and maybe the right direction for your career, but you're open to considering a big change if necessary.",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        1748160,
+        1939200
+      ],
+      "silence_window_samples": [
+        1939200,
+        2353920
+      ],
+      "seeker_window_frames": [
+        910,
+        1010
+      ],
+      "silence_window_frames": [
+        1010,
+        1226
+      ]
+    },
+    {
+      "turn_id": 9,
+      "strategy": "Affirmation and Reassurance",
+      "seeker_gt": "Yes, exactly.",
+      "supporter_gt": "It takes courage to pursue a major career change, and I want you to know that you have the strength and capability to make the best decision for yourself.",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "Have you considered taking any interest tests or finding out what your personal goals are? Having a clear idea of what you want to achieve in your career could help you decide if a change would be a right move for you.",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        2353920,
+        2408640
+      ],
+      "silence_window_samples": [
+        2408640,
+        2928000
+      ],
+      "seeker_window_frames": [
+        1226,
+        1254
+      ],
+      "silence_window_frames": [
+        1254,
+        1525
+      ]
+    },
+    {
+      "turn_id": 11,
+      "strategy": "Providing Suggestions",
+      "seeker_gt": "Thank you, that means a lot.",
+      "supporter_gt": "Have you considered what other fields or industries might interest you?",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "How does your family and friends react when you start talking about the possibility of making a change? Do their reactions sway your decision at all?",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        2928000,
+        3035520
+      ],
+      "silence_window_samples": [
+        3035520,
+        3398400
+      ],
+      "seeker_window_frames": [
+        1525,
+        1581
+      ],
+      "silence_window_frames": [
+        1581,
+        1770
+      ]
+    },
+    {
+      "turn_id": 13,
+      "strategy": "Question",
+      "seeker_gt": "Yes, I've been researching different options and talking to people in other fields to see what might be a good fit for me.",
+      "supporter_gt": "That's a great first step. Have you also thought about any potential downsides to making a career change?",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "I am more than glad to hear that! Have you put together a budget and seen what the financial impact would be from changing your status to your marriage?",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        3398400,
+        3566400
+      ],
+      "silence_window_samples": [
+        3566400,
+        3998400
+      ],
+      "seeker_window_frames": [
+        1770,
+        1858
+      ],
+      "silence_window_frames": [
+        1858,
+        2082
+      ]
+    },
+    {
+      "turn_id": 15,
+      "strategy": "Providing Suggestions",
+      "seeker_gt": "Yes, I'm worried about potentially starting from scratch and losing the financial stability I have now.",
+      "supporter_gt": "It might be helpful to create a pros and cons list to weigh the potential benefits and drawbacks of making a career change. You can also research any potential financial resources or opportunities to ease the transition.",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "It's scary, it sounds like. But it seems like you' being very proactive about this decision and searching for the wisest advice that you can get.",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        3998400,
+        4159680
+      ],
+      "silence_window_samples": [
+        4159680,
+        4741440
+      ],
+      "seeker_window_frames": [
+        2082,
+        2166
+      ],
+      "silence_window_frames": [
+        2166,
+        2470
+      ]
+    },
+    {
+      "turn_id": 17,
+      "strategy": "Imagery",
+      "seeker_gt": "That sounds like a good idea.",
+      "supporter_gt": "Try to picture yourself in different scenarios, both in your current role and in potential new ones. How do you feel in each situation, both emotionally and mentally?",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "How about this? You could try exploring whether or not there is another way to make these changes in your career without the starting over part. There may be some other options!",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        4741440,
+        4796160
+      ],
+      "silence_window_samples": [
+        4796160,
+        5389440
+      ],
+      "seeker_window_frames": [
+        2470,
+        2498
+      ],
+      "silence_window_frames": [
+        2498,
+        2807
+      ]
+    },
+    {
+      "turn_id": 19,
+      "strategy": "Reflection of feelings",
+      "seeker_gt": "I can imagine feeling more fulfilled and motivated in a new role, but also anxious about the uncertainty that comes with change.",
+      "supporter_gt": "It sounds like you're experiencing a mixture of excitement and fear about the possibility of change.",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "Can you tell me more about what it means to you to feel fulfilled at your job right now? What do you enjoy about that work, and why are you feeling unfulfilled with the decision you've made in the past?",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        5389440,
+        5601600
+      ],
+      "silence_window_samples": [
+        5601600,
+        6022080
+      ],
+      "seeker_window_frames": [
+        2807,
+        2918
+      ],
+      "silence_window_frames": [
+        2918,
+        3136
+      ]
+    },
+    {
+      "turn_id": 21,
+      "strategy": "Take Responsibility",
+      "seeker_gt": "Yes, that's exactly it.",
+      "supporter_gt": "Remember that ultimately, the decision to make a career change is yours to make. It's important to take responsibility for your choices and trust that you can handle any challenges that come your way.",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "Would you be willing to try a little exercise with me and then we can talk about it?",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        6022080,
+        6090240
+      ],
+      "silence_window_samples": [
+        6090240,
+        6725760
+      ],
+      "seeker_window_frames": [
+        3136,
+        3172
+      ],
+      "silence_window_frames": [
+        3172,
+        3503
+      ]
+    },
+    {
+      "turn_id": 23,
+      "strategy": "Question",
+      "seeker_gt": "Thank you, I appreciate that reminder.",
+      "supporter_gt": "How have you been taking care of yourself during this stressful time?",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "Have you thought about how you might be able to connect with someone in this new city who could help you feel less alone as you adjust to this new life?",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        6725760,
+        6800640
+      ],
+      "silence_window_samples": [
+        6800640,
+        7166400
+      ],
+      "seeker_window_frames": [
+        3503,
+        3542
+      ],
+      "silence_window_frames": [
+        3542,
+        3732
+      ]
+    },
+    {
+      "turn_id": 25,
+      "strategy": "Question",
+      "seeker_gt": "I've been trying to exercise more and spend time with friends and family, but it's been tough to find the time and energy.",
+      "supporter_gt": "It's important to prioritize your mental and physical health during times of stress. Are there any specific self-care practices that you find helpful?",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "You're already doing an amazing job. Keep up the good work! Have you considered volunteering for any community guidelines groups or non-profits that may be in the area? That could be another way to feel like your giving back to your community and making a difference. volunteering",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        7166400,
+        7357440
+      ],
+      "silence_window_samples": [
+        7357440,
+        7891200
+      ],
+      "seeker_window_frames": [
+        3732,
+        3832
+      ],
+      "silence_window_frames": [
+        3832,
+        4110
+      ]
+    },
+    {
+      "turn_id": 27,
+      "strategy": "Restatement or Paraphrasing",
+      "seeker_gt": "I like to meditate and journal, but I haven't been doing it regularly.",
+      "supporter_gt": "So it sounds like you could benefit from prioritizing self-care activities, even if it means making some sacrifices in other areas.",
+      "supporter_gen_think": "career relocation decision",
+      "supporter_gen_speech": "",
+      "supporter_gen_think_forced": [
+        "career relocation decision"
+      ],
+      "supporter_gen_think_free": [],
+      "seeker_window_samples": [
+        7891200,
+        8047680
+      ],
+      "silence_window_samples": [
+        8047680,
+        8524800
+      ],
+      "seeker_window_frames": [
+        4110,
+        4192
+      ],
+      "silence_window_frames": [
+        4192,
+        4440
+      ]
+    }
+  ]
+}
