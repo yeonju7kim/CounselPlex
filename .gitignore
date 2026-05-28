@@ -1,0 +1,18 @@
+# Large model weights (host on HuggingFace Hub, not GitHub)
+checkpoints/counselplex.pt
+checkpoints/mimi.safetensors
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Editors
+.vscode/
+.idea/
+.DS_Store
